@@ -47,9 +47,12 @@ li {
 }
 
 .border-container {
-  padding: 0;
+  padding: 20px;
   margin: 0;
   display: flex;
+  border: 1px solid white;
+  border-radius: 1%;
+  color: white;
 }
 
 .border-item {
@@ -63,4 +66,80 @@ li {
   min-width: 280px;
   margin: 0 auto;
   padding: 20px;
+}
+
+/* NAVIGATION */
+
+.nav-menu {
+  display: inline-block;
+}
+
+.nav-menu-item {
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Tweet styles */
+
+.tweet-user-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.tweet-user-elements {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.tweet-user-name {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+.tweet-date {
+  font-weight: lighter;
+  color: grey;
+}
+
+.tweet-tweet {
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+.tweet-container {
+  margin: 20px 150px;
+}
+
+.tweet-like-button {
+  border: none;
+  background-color: black;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* NEW TWEET */
+
+.new-tweet-container {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 25px;
+}
+
+.new-tweet-button {
+  display: block;
+  background-color: var(--pink);
+  text-align: center;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 2%;
+  margin: 15px auto;
+  width: 300px;
+  font-weight: 900;
+  font-size: 15px;
+  border: 2px solid black;
 }
