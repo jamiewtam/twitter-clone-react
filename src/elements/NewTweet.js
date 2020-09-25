@@ -40,6 +40,8 @@ const SubmitTweet = (props) => {
     return <Redirect to="/" />;
   }
 
+  const tweetLeft = 280 - textArea.length;
+
   return (
     <form className="new-tweet-container">
       <textarea
@@ -50,6 +52,10 @@ const SubmitTweet = (props) => {
         value={textArea}
         onChange={handleChange}
       />
+      {tweetLeft < 100 && (
+        <p style={{ color: "red" }}>{tweetLeft} characters left</p>
+      )}
+
       <button onClick={submitTweet} className="new-tweet-button">
         Submit Tweet
       </button>

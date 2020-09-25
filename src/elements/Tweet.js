@@ -1,11 +1,14 @@
 import React from "react";
 
 import { FaHeart, FaReply } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { handleLike } from "../actions/tweetActions";
 
 const Tweet = ({ tweet, users }) => {
+  const dispatch = useDispatch();
   const allTweets = useSelector((state) => state.tweets);
+  const currentUser = useSelector((state) => state.authedUser);
 
   const { text, timestamp, likes, replyingTo, replies, id } = tweet;
 
@@ -16,9 +19,20 @@ const Tweet = ({ tweet, users }) => {
 
   const { avatarURL, name } = users[tweet.author];
 
-  const handleLike = (e) => {
+  const isLikedByUser = !!likes.find((likedUser) => {
+    return likedUser === currentUser;
+  });
+
+  const handleLikeFromPage = (e) => {
     e.preventDefault();
-    console.log("test");
+    console.log("running");
+    dispatch(
+      handleLike({
+        id,
+        authedUser: currentUser,
+        hasLiked: isLikedByUser,
+      })
+    );
   };
 
   return (
@@ -36,15 +50,19 @@ const Tweet = ({ tweet, users }) => {
             <FaReply size="30px" style={{ paddingRight: "5px" }} />{" "}
             {replies ? replies.length : 0}
             &nbsp;
-            <button className="tweet-like-button" onClick={handleLike}>
-              {likes.length ? (
+            <button className="tweet-like-button" onClick={handleLikeFromPage}>
+              {isLikedByUser ? (
                 <FaHeart
                   size="30px"
                   color="#E0245E"
                   style={{ paddingRight: "5px" }}
                 />
               ) : (
-                <FaHeart size="30px" style={{ paddingRight: "5px" }} />
+                <FaHeart
+                  size="30px"
+                  color="white"
+                  style={{ paddingRight: "5px" }}
+                />
               )}
             </button>
             {likes ? likes.length : 0}

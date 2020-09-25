@@ -8,7 +8,8 @@ const SingleTweet = (props) => {
   // Get the id from the params.
   const { id } = useParams();
   // Get the twee from the state.
-  const tweet = useSelector((state) => state.tweets).tweets[id];
+  const allTweets = useSelector((state) => state.tweets);
+  const tweet = allTweets.tweets[id];
   const users = useSelector((state) => state.users);
 
   //
@@ -16,6 +17,15 @@ const SingleTweet = (props) => {
     <div className="tweet-container">
       <Tweet tweet={tweet} users={users.users} />
       <NewTweet replyingTo={id} />
+      {tweet.replies.map((replyTweet) => {
+        return (
+          <Tweet
+            key={replyTweet}
+            tweet={allTweets.tweets[replyTweet]}
+            users={users.users}
+          />
+        );
+      })}
     </div>
   );
 };
